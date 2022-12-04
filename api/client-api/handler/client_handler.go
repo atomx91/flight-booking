@@ -4,13 +4,10 @@ import (
 	client_request "flight-booking/api/client-api/request"
 	client_response "flight-booking/api/client-api/response"
 	"flight-booking/pb"
+	"flight-booking/util"
 	"fmt"
 	"net/http"
 	"strings"
-
-	"crypto/aes"
-	"crypto/cipher"
-	"encoding/base64"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
@@ -78,7 +75,7 @@ func (h *clientHandler) CreateClient(c *gin.Context) {
 	// encrypt pwd
 	if len(strings.TrimSpace(req.Password)) > 0 {
 		// To encrypt the StringToEncrypt
-		encText, err := Encrypt(req.Password)
+		encText, err := util.Encrypt(req.Password)
 		if err != nil {
 			fmt.Println("error encrypting your classified text: ", err)
 			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
@@ -159,7 +156,7 @@ func (h *clientHandler) UpdateClient(c *gin.Context) {
 	// encrypt pwd
 	if len(strings.TrimSpace(req.Password)) > 0 {
 		// To encrypt the StringToEncrypt
-		encText, err := Encrypt(req.Password)
+		encText, err := util.Encrypt(req.Password)
 		if err != nil {
 			fmt.Println("error encrypting your classified text: ", err)
 			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
@@ -246,7 +243,7 @@ func (h *clientHandler) ChangePassword(c *gin.Context) {
 	}
 
 	// Check old password not match
-	decText, err := Decrypt(pResCheck.Password)
+	decText, err := util.Decrypt(pResCheck.Password)
 	if err != nil {
 		fmt.Println("error decrypting your classified text: ", err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
@@ -279,7 +276,7 @@ func (h *clientHandler) ChangePassword(c *gin.Context) {
 	// encrypt pwd
 	if len(strings.TrimSpace(req.NewPassword)) > 0 {
 		// To encrypt the StringToEncrypt
-		encText, err := Encrypt(req.NewPassword)
+		encText, err := util.Encrypt(req.NewPassword)
 		if err != nil {
 			fmt.Println("error encrypting your classified text: ", err)
 			c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{
@@ -305,41 +302,4 @@ func (h *clientHandler) ChangePassword(c *gin.Context) {
 		"status":  http.StatusText(http.StatusOK),
 		"payload": pRes,
 	})
-}
-
-func Encode(b []byte) string {
-	return base64.StdEncoding.EncodeToString(b)
-}
-func Decode(s string) []byte {
-	data, err := base64.StdEncoding.DecodeString(s)
-	if err != nil {
-		panic(err)
-	}
-	return data
-}
-
-// Encrypt method is to encrypt or hide any classified text
-func Encrypt(textStr string) (string, error) {
-	block, err := aes.NewCipher([]byte(MySecret))
-	if err != nil {
-		return "", err
-	}
-	plainText := []byte(textStr)
-	cfb := cipher.NewCFBEncrypter(block, bytes)
-	cipherText := make([]byte, len(plainText))
-	cfb.XORKeyStream(cipherText, plainText)
-	return Encode(cipherText), nil
-}
-
-// Decrypt method is to extract back the encrypted text
-func Decrypt(textStr string) (string, error) {
-	block, err := aes.NewCipher([]byte(MySecret))
-	if err != nil {
-		return "", err
-	}
-	cipherText := Decode(textStr)
-	cfb := cipher.NewCFBDecrypter(block, bytes)
-	plainText := make([]byte, len(cipherText))
-	cfb.XORKeyStream(plainText, cipherText)
-	return string(plainText), nil
 }

@@ -48,8 +48,10 @@ func (in *Booking) ToResponse() *pb.Booking {
 			MembershipCard: in.Client.MembershipCard,
 			Password:       in.Client.Password,
 			Status:         in.Client.Status,
-			CreatedAt:      timestamppb.New(in.Client.CreatedAt),
-			UpdatedAt:      timestamppb.New(in.Client.UpdatedAt),
+			Audit: &pb.Audit{
+				UpdatedAt: timestamppb.New(in.Client.UpdatedAt),
+				CreatedAt: timestamppb.New(in.CreatedAt),
+			},
 		},
 		Flight: &pb.FlightDTO{
 			Id:            in.Flight.Id.String(),

@@ -4,6 +4,7 @@ package flight_booking;
 option go_package = "./;pb";
 
 import "google/protobuf/timestamp.proto";
+import "audit.proto";
 
 service RPCBooking {
     rpc FindById(BookingParamId) returns (Booking);
@@ -28,8 +29,7 @@ message ClientDTO {
     string membership_card = 9;
     string password = 10;
     int32 status = 11;
-    google.protobuf.Timestamp created_at = 12;
-    google.protobuf.Timestamp updated_at = 13;
+    Audit audit = 12;
 }
 
 message FlightDTO {
