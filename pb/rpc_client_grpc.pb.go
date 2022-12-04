@@ -39,7 +39,7 @@ func NewRPCClientClient(cc grpc.ClientConnInterface) RPCClientClient {
 
 func (c *rPCClientClient) FindById(ctx context.Context, in *ClientParamId, opts ...grpc.CallOption) (*Client, error) {
 	out := new(Client)
-	err := c.cc.Invoke(ctx, "/tuns_go_flight.RPCClient/FindById", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/flight_booking.RPCClient/FindById", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -48,7 +48,7 @@ func (c *rPCClientClient) FindById(ctx context.Context, in *ClientParamId, opts 
 
 func (c *rPCClientClient) CreateClient(ctx context.Context, in *Client, opts ...grpc.CallOption) (*Client, error) {
 	out := new(Client)
-	err := c.cc.Invoke(ctx, "/tuns_go_flight.RPCClient/CreateClient", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/flight_booking.RPCClient/CreateClient", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -57,7 +57,7 @@ func (c *rPCClientClient) CreateClient(ctx context.Context, in *Client, opts ...
 
 func (c *rPCClientClient) UpdateClient(ctx context.Context, in *Client, opts ...grpc.CallOption) (*Client, error) {
 	out := new(Client)
-	err := c.cc.Invoke(ctx, "/tuns_go_flight.RPCClient/UpdateClient", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/flight_booking.RPCClient/UpdateClient", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -66,7 +66,7 @@ func (c *rPCClientClient) UpdateClient(ctx context.Context, in *Client, opts ...
 
 func (c *rPCClientClient) ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error) {
 	out := new(ChangePasswordResponse)
-	err := c.cc.Invoke(ctx, "/tuns_go_flight.RPCClient/ChangePassword", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/flight_booking.RPCClient/ChangePassword", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -75,7 +75,7 @@ func (c *rPCClientClient) ChangePassword(ctx context.Context, in *ChangePassword
 
 func (c *rPCClientClient) SearchClient(ctx context.Context, in *SearchClientRequest, opts ...grpc.CallOption) (*SearchClientResponse, error) {
 	out := new(SearchClientResponse)
-	err := c.cc.Invoke(ctx, "/tuns_go_flight.RPCClient/SearchClient", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/flight_booking.RPCClient/SearchClient", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -136,7 +136,7 @@ func _RPCClient_FindById_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tuns_go_flight.RPCClient/FindById",
+		FullMethod: "/flight_booking.RPCClient/FindById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RPCClientServer).FindById(ctx, req.(*ClientParamId))
@@ -154,7 +154,7 @@ func _RPCClient_CreateClient_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tuns_go_flight.RPCClient/CreateClient",
+		FullMethod: "/flight_booking.RPCClient/CreateClient",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RPCClientServer).CreateClient(ctx, req.(*Client))
@@ -172,7 +172,7 @@ func _RPCClient_UpdateClient_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tuns_go_flight.RPCClient/UpdateClient",
+		FullMethod: "/flight_booking.RPCClient/UpdateClient",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RPCClientServer).UpdateClient(ctx, req.(*Client))
@@ -190,7 +190,7 @@ func _RPCClient_ChangePassword_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tuns_go_flight.RPCClient/ChangePassword",
+		FullMethod: "/flight_booking.RPCClient/ChangePassword",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RPCClientServer).ChangePassword(ctx, req.(*ChangePasswordRequest))
@@ -208,7 +208,7 @@ func _RPCClient_SearchClient_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tuns_go_flight.RPCClient/SearchClient",
+		FullMethod: "/flight_booking.RPCClient/SearchClient",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RPCClientServer).SearchClient(ctx, req.(*SearchClientRequest))
@@ -220,7 +220,7 @@ func _RPCClient_SearchClient_Handler(srv interface{}, ctx context.Context, dec f
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var RPCClient_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "tuns_go_flight.RPCClient",
+	ServiceName: "flight_booking.RPCClient",
 	HandlerType: (*RPCClientServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

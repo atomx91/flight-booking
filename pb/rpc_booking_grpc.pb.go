@@ -38,7 +38,7 @@ func NewRPCBookingClient(cc grpc.ClientConnInterface) RPCBookingClient {
 
 func (c *rPCBookingClient) FindById(ctx context.Context, in *BookingParamId, opts ...grpc.CallOption) (*Booking, error) {
 	out := new(Booking)
-	err := c.cc.Invoke(ctx, "/tuns_go_flight.RPCBooking/FindById", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/flight_booking.RPCBooking/FindById", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +47,7 @@ func (c *rPCBookingClient) FindById(ctx context.Context, in *BookingParamId, opt
 
 func (c *rPCBookingClient) CreateBooking(ctx context.Context, in *Booking, opts ...grpc.CallOption) (*Booking, error) {
 	out := new(Booking)
-	err := c.cc.Invoke(ctx, "/tuns_go_flight.RPCBooking/CreateBooking", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/flight_booking.RPCBooking/CreateBooking", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +56,7 @@ func (c *rPCBookingClient) CreateBooking(ctx context.Context, in *Booking, opts 
 
 func (c *rPCBookingClient) UpdateBooking(ctx context.Context, in *Booking, opts ...grpc.CallOption) (*Booking, error) {
 	out := new(Booking)
-	err := c.cc.Invoke(ctx, "/tuns_go_flight.RPCBooking/UpdateBooking", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/flight_booking.RPCBooking/UpdateBooking", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -65,7 +65,7 @@ func (c *rPCBookingClient) UpdateBooking(ctx context.Context, in *Booking, opts 
 
 func (c *rPCBookingClient) SearchBooking(ctx context.Context, in *SearchBookingRequest, opts ...grpc.CallOption) (*SearchBookingResponse, error) {
 	out := new(SearchBookingResponse)
-	err := c.cc.Invoke(ctx, "/tuns_go_flight.RPCBooking/SearchBooking", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/flight_booking.RPCBooking/SearchBooking", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -122,7 +122,7 @@ func _RPCBooking_FindById_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tuns_go_flight.RPCBooking/FindById",
+		FullMethod: "/flight_booking.RPCBooking/FindById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RPCBookingServer).FindById(ctx, req.(*BookingParamId))
@@ -140,7 +140,7 @@ func _RPCBooking_CreateBooking_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tuns_go_flight.RPCBooking/CreateBooking",
+		FullMethod: "/flight_booking.RPCBooking/CreateBooking",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RPCBookingServer).CreateBooking(ctx, req.(*Booking))
@@ -158,7 +158,7 @@ func _RPCBooking_UpdateBooking_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tuns_go_flight.RPCBooking/UpdateBooking",
+		FullMethod: "/flight_booking.RPCBooking/UpdateBooking",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RPCBookingServer).UpdateBooking(ctx, req.(*Booking))
@@ -176,7 +176,7 @@ func _RPCBooking_SearchBooking_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tuns_go_flight.RPCBooking/SearchBooking",
+		FullMethod: "/flight_booking.RPCBooking/SearchBooking",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RPCBookingServer).SearchBooking(ctx, req.(*SearchBookingRequest))
@@ -188,7 +188,7 @@ func _RPCBooking_SearchBooking_Handler(srv interface{}, ctx context.Context, dec
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var RPCBooking_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "tuns_go_flight.RPCBooking",
+	ServiceName: "flight_booking.RPCBooking",
 	HandlerType: (*RPCBookingServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

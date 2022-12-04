@@ -1,5 +1,5 @@
 syntax = "proto3";
-package tuns_go_flight;
+package flight_booking;
 option go_package = "./;pb";
 
 message Empty {}
